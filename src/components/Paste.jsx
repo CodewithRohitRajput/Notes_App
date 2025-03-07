@@ -46,7 +46,7 @@ placeholder='Title'
 value={title}
 name='title'
 onChange={(e)=> setTitle(e.target.value)}
-className='w-80 h-10 bg-slate-300 border-2 border-gray-600 rounded-md px-4 py-2 font-semibold outline-none'
+className='w-80 h-10 bg-slate-300 border-2 mt-4 border-gray-600 rounded-md px-4 py-2 font-semibold outline-none'
 />
 
 <textarea name="description" id="description" 
