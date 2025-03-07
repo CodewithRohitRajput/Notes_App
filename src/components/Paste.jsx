@@ -33,6 +33,17 @@ const Paste = () => {
         }
     }
 
+    // delete note
+
+    function deleteNote(id){
+        if(window.confirm("Are you sure you want to delete : ")){
+
+            const updatedNotes = notes.filter(note => note.id !== id)
+            setNotes(updatedNotes);
+            localStorage.setItem("notes" , JSON.stringify(updatedNotes))
+        }
+    }
+
    
 
 
@@ -64,10 +75,17 @@ className='w-80 h-36 bg-slate-300 border-2 border-gray-600 rounded-md px-4 py-2 
     <div className='bg-slate-400 border-2 rounded-md w-80 h-20 mt-4 border-gray-600' key={note.id} >
         <h4 className='text-xl px-4'> {note.title} </h4>
         <p className='px-4'> {note.description.substring(0 , 25)}... </p>
-        <button onClick={()=>setSelectedNote(note)} className='  ml-56 mt-0 text-yellow-300 text-white underline '>
+        <div className='flex flex-row w-full '>
+
+       
+        <button onClick={()=> deleteNote(note.id)} className='ml-2 mb-5 text-red-700 underline '>
+            Delete
+        </button>
+        <button onClick={()=>setSelectedNote(note)} className='  ml-40 mb-5 text-yellow-300 text-white underline '>
             
             Read More
         </button>
+        </div>
     </div>
 ))}
 
