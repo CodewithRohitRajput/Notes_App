@@ -7,6 +7,9 @@ const Paste = () => {
     const[title , setTitle] = useState("");
     const[description , setDescription] = useState("");
     const[selectednote , setSelectedNote] = useState(null);
+    const[editNote , setEditNote] = useState(null);
+    const[editTitle , setEditTitle] = useState("");
+    const[editDescription , setEditDescription] = useState("");
 
     // fetching data from local storage
     
@@ -44,7 +47,25 @@ const Paste = () => {
         }
     }
 
-   
+    function editNoteHandler(note) {
+        setEditNote(note);
+        setEditTitle(note.title);
+        setEditDescription(note.description);
+    }
+    
+    function updateNote() {
+        if (editTitle && editDescription) {
+            const updatedNotes = notes.map((note) =>
+                note.id === editNote.id
+                    ? { ...note, title: editTitle, description: editDescription }
+                    : note
+            );
+            setNotes(updatedNotes);
+            localStorage.setItem("notes", JSON.stringify(updatedNotes)); // ✅ Save changes to storage
+            setEditNote(null); // ✅ Close modal after saving
+        }
+    }
+    
 
 
   return (
@@ -78,6 +99,8 @@ className='w-80 h-36 bg-slate-300 border-2 border-gray-600 rounded-md px-4 py-2 
 </button>
 <br /><br />
 <p className='text-lg text-gray-400 '>Your created Notes :-</p>
+
+
 {notes.slice().reverse().map((note)=> (
     <div className='bg-slate-400 border-2 rounded-md w-80 h-20 mt-4 border-gray-600' key={note.id} >
         <h4 className='text-xl px-2'> {note.title} </h4>
@@ -85,10 +108,13 @@ className='w-80 h-36 bg-slate-300 border-2 border-gray-600 rounded-md px-4 py-2 
         <div className='flex flex-row w-full '>
 
        
-        <button onClick={()=> deleteNote(note.id)} className='ml-2 mb-5 text-red-700 underline '>
+        <button onClick={()=> deleteNote(note.id)} className='ml-2 mb-10 text-red-700 underline '>
             delete
         </button>
-        <button onClick={()=>setSelectedNote(note)} className='  ml-40 mb-5 text-yellow-300 text-white underline active:text-blue '>
+        <button onClick={()=> editNoteHandler(note)} className='ml-4 mb-10 text-green-400 underline '>
+            Edit
+        </button>
+        <button onClick={()=>setSelectedNote(note)} className='  ml-32 mb-10 text-yellow-300 text-white underline active:text-blue '>
             
             Read More
         </button>
@@ -110,8 +136,39 @@ className='w-80 h-36 bg-slate-300 border-2 border-gray-600 rounded-md px-4 py-2 
                 Go Back
             </button>
 
+      
+
         </div>
     )}
+
+{editNote && (
+        <div className='fixed left-0 top-0 w-full h-full bg-yellow-100 text-black font-semibold flex flex-col justify-center items-center'>
+          <input type="text"
+          value={editTitle}
+          onChange={(e)=> setEditTitle(e.target.value)}
+          className="w-80 h-10 bg-gray-200 text-black border-2 -mt-96 border-gray-600 rounded-md px-4 py-2 font-semibold outline-none "
+          />
+
+                <textarea name="editDescription" id=""
+                value={editDescription}
+                onChange={(e)=>setEditDescription(e.target.value)}
+                 className="w-80 h-36 bg-gray-200 text-black border-2 border-gray-600 rounded-md px-4 py-2 font-semibold outline-none mt-8"
+                ></textarea>
+                    <div className='space-x-20'>
+
+                    <button onClick={()=>setEditNote(null)} className='px-4 py-2 border-b-4 border-black rounded-lg mt-5 ml-5 font-semibold text-black bg-yellow-400 active:scale-90  transition-all duration-100 '>
+                Cancel
+            </button>
+                    
+                    <button onClick={updateNote} className="px-4 py-2 bg-green-500 border-b-4 border-black rounded-lg font-semibold hover:scale-90 transition-all duration-300 mt-10">
+                        Save changes
+                    </button>
+
+             
+            </div>
+             </div>
+        )}
+
     </main>
 
     <footer className="bg-blue-100 w-full flex justify-center items-center h-14 mt-auto px-2 bottom-0 fixed space-x-10">
