@@ -114,9 +114,9 @@ className='w-80 h-36 bg-slate-300 border-2 border-gray-600 rounded-md px-4 py-2 
     )}
     </main>
 
-    <footer className="bg-blue-100 w-full flex justify-center items-center h-14 mt-auto px-2">
+    <footer className="bg-blue-100 w-full flex justify-center items-center h-14 mt-auto px-2 bottom-0 fixed space-x-10">
                 <p>© 2025 NotesPhile. All rights reserved</p>
-                <p>Created by: ROHIT SINGH RAJPUT</p>
+                <p>Created by:- ROHIT SINGH RAJPUT</p>
             </footer>
     </div>
   )
