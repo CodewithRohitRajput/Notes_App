@@ -106,7 +106,7 @@ className='w-80 h-36 bg-slate-300 border-2 border-gray-600 rounded-md px-4 py-2 
           Description :    {selectednote.description}
         </p>
 
-            <button onClick={()=>setSelectedNote(null)} className='px-4 py-2 border-b-4 border-black rounded-lg mt-5 ml-5 font-semibold text-black bg-yellow-400 hover:scale-90  transition-all duration-100 '>
+            <button onClick={()=>setSelectedNote(null)} className='px-4 py-2 border-b-4 border-black rounded-lg mt-5 ml-5 font-semibold text-black bg-yellow-400 active:scale-90  transition-all duration-100 '>
                 Go Back
             </button>
 
@@ -115,7 +115,7 @@ className='w-80 h-36 bg-slate-300 border-2 border-gray-600 rounded-md px-4 py-2 
     </main>
 
     <footer className="bg-blue-100 w-full flex justify-center items-center h-14 mt-auto px-2 bottom-0 fixed space-x-10">
-                <p>© 2025 NotesPhile. All rights reserved</p>
+                <p>© 2025 NOTE PHILE. All rights reserved</p>
                 <p>Created by:- ROHIT SINGH RAJPUT</p>
             </footer>
     </div>
