@@ -76,7 +76,7 @@ const Paste = () => {
         NOTE PHILE
         </div>
 
-    <main className='flex-grow p-6 flex flex-col items-center'>
+    <main className='flex-grow p-6 flex flex-col items-center overflow-y-auto pb-20'>
 
     
 
@@ -85,7 +85,7 @@ placeholder='Title'
 value={title}
 name='title'
 onChange={(e)=> setTitle(e.target.value)}
-className='w-80 h-10 bg-slate-300 border-2 mt-4 border-gray-600 rounded-md px-4 py-2 font-semibold outline-none'
+className='w-80 h-10 bg-slate-300  border-2 mt-4 border-gray-600 rounded-md px-4 py-2 font-semibold outline-none'
 />
 
 <textarea name="description" id="description" 
